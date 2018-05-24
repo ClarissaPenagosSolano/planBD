@@ -64,7 +64,7 @@ public class VentaDaoImpl implements IVentaDao {
 			rs.close();
 			co.close();
 		} catch (SQLException e) {
-			System.out.println("Error: Clase ProductoDaoImple, método obtener");
+			System.out.println("Error: Clase ventaDaoImple, método obtener");
 			e.printStackTrace();
 		}
 

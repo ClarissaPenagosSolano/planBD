@@ -54,4 +54,5 @@ public class SucursalResource {
 		String json = new Gson().toJson( SucursalesCreados );
 		return json;
 	}
+	
 }

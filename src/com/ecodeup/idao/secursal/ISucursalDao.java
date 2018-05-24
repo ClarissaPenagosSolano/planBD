@@ -16,4 +16,6 @@ public interface ISucursalDao {
 	public boolean actualizar(Sucursales sucursales);
 
 	public boolean eliminar(Sucursales sucursales);
+
+	boolean innerJoin(Sucursales sucursales);
 }

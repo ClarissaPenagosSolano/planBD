@@ -113,6 +113,64 @@ public class SucursalDaoImpl implements ISucursalDao {
 		}
 		return eliminar;
 	}
+	@Override
+	public boolean innerJoin(Sucursales sucursales) {
+		boolean innerJoin = false;
+
+		Statement stm = null;
+		Connection con = null;
+
+		String sql = "SELECT  ( id_sucursal, razon_social, direccion_suc, telefono, id_administrador)";
+		System.out.println(sql);
+	
+		
+		try {
+			con = Conexion.conectar();
+			stm = con.createStatement();
+			stm.execute(sql);
+			innerJoin = true;
+			stm.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error: Clase RncargadoDaoImpl, método registrar");
+			e.printStackTrace();
+		}
+		return innerJoin;
+	}
+	public List<String[]> obtenerProductosSucursal( int idSucursal ) {
+
+		Connection co = null;
+		Statement stm = null;
+		ResultSet rs = null;
+
+		String sql = "select sucursal.razon_social, producto.nombre_producto from producto_sucursal" +
+                " inner join producto on producto_sucursal.producto_idproducto = producto.id_producto" +
+                " inner join sucursal on producto_sucursal.sucursal_id_sucursal = sucursal.id_sucursal" +
+                "where sucursal.id_sucursal = " + String.valueOf(idSucursal) + ";";
+
+		List<String[]> listaSucursal= new ArrayList<String[]>();
+
+		try {
+			co = Conexion.conectar();
+			stm = co.createStatement();
+			rs = stm.executeQuery(sql);
+			while (rs.next()) {
+
+                String[] productoSucursal = new String[2];
+                productoSucursal[0] = rs.getString(1); // nombre de la sucursal
+                productoSucursal[1] = rs.getString(2); // nombre del producto
+				listaSucursal.add(productoSucursal);
+			}
+			stm.close();
+			rs.close();
+			co.close();
+		} catch (SQLException e) {
+			System.out.println("Error: Clase ClienteDaoImple, metodo obtener");
+			e.printStackTrace();
+		}
+
+		return listaSucursal;
+	}
 
 	
 

@@ -7,8 +7,24 @@ public class Sucursales {
 	public String direccion_suc;
 	public String telefono;
 	public int id_administrador;
+	public int cantidad_productos;
 	
-	
+	public Sucursales(int cantidad_productos) {
+		super();
+		this.cantidad_productos = cantidad_productos;
+	}
+
+
+	public int getCantidad_productos() {
+		return cantidad_productos;
+	}
+
+
+	public void setCantidad_productos(int cantidad_productos) {
+		this.cantidad_productos = cantidad_productos;
+	}
+
+
 	public Sucursales() {
 		super();
 	}
@@ -77,6 +93,6 @@ public class Sucursales {
 	@Override
 	public String toString() {
 		return this.id_sucursal+ "," + this.razon_social+ "," + this.direccion_suc+ "," + this.telefono+ ","
-				+ this.id_administrador;
+				+ this.id_administrador +","+ this.cantidad_productos;
 	}
 }
