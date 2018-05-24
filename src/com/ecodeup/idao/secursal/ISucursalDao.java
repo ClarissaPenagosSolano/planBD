@@ -18,4 +18,6 @@ public interface ISucursalDao {
 	public boolean eliminar(Sucursales sucursales);
 
 	boolean innerJoin(Sucursales sucursales);
+
+	List<String[]> obtenerProductosSucursal(int id_sucursal);
 }
