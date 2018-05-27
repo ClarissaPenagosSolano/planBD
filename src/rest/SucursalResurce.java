@@ -1,6 +1,6 @@
 package rest;
-import javax.ws.rs.GET;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -19,26 +19,26 @@ import javax.ws.rs.core.Application;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Path("/Sucursal")
 public class SucursalResurce {
 
-
+	// Este codigo recupera los parametros que vienen por la URL
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public String listar(int id_sucursal){
+	public String listar(int id_sucursal) {
 		ISucursalDao dao = new SucursalDaoImpl();
+		// aqui mas especificamente segun yo
+
+		if (Request.getParameter("id_sucursal") == null) {
+			System.out.println(".");
+		} else {
+			System.out.println(" <b>" + Request.getParameter("id_sucursal") + "</b>!");
+		}
 		List<String[]> SucursalesCreados = dao.obtenerProductosSucursal(id_sucursal);
-		String json = new Gson().toJson( SucursalesCreados );
+		String json = new Gson().toJson(SucursalesCreados);
 		return json;
+
 	}
-	
-	 Request.getParameter(id_sucursal);
-	 
-//	
-//    if (Request.getParameter(id_sucursal) == null) {
-//    	  System.out.println(".");
-//    } else {
-//        System.out.println(" <b>"+ Request.getParameter(id_sucursal)+"</b>!");
-//    }
-	
+
 }
