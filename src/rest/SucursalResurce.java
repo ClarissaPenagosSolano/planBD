@@ -6,6 +6,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 
 import com.ecodeup.dao.sucursal.SucursalDaoImpl;
 import com.ecodeup.idao.secursal.ISucursalDao;
@@ -31,6 +32,13 @@ public class SucursalResurce {
 		return json;
 	}
 	
-	
+	 Request.getParameter(id_sucursal);
+	 
+//	
+//    if (Request.getParameter(id_sucursal) == null) {
+//    	  System.out.println(".");
+//    } else {
+//        System.out.println(" <b>"+ Request.getParameter(id_sucursal)+"</b>!");
+//    }
 	
 }
