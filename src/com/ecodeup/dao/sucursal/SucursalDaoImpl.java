@@ -11,9 +11,8 @@ import com.connection.Conexion;
 import com.ecodeup.idao.secursal.ISucursalDao;
 import com.ecodeup.model.sucursal.Sucursales;
 
-
 public class SucursalDaoImpl implements ISucursalDao {
-	
+
 	@Override
 	public boolean registrar(Sucursales sucursales) {
 		boolean registrar = false;
@@ -23,8 +22,7 @@ public class SucursalDaoImpl implements ISucursalDao {
 
 		String sql = "INSERT INTO sucursal values ( id_sucursal, razon_social, direccion_suc, telefono, id_administrador)";
 		System.out.println(sql);
-	
-		
+
 		try {
 			con = Conexion.conectar();
 			stm = con.createStatement();
@@ -48,7 +46,7 @@ public class SucursalDaoImpl implements ISucursalDao {
 
 		String sql = "SELECT * FROM sucursal ORDER BY id_sucursal";
 
-		List<Sucursales> listaSucursal= new ArrayList<Sucursales>();
+		List<Sucursales> listaSucursal = new ArrayList<Sucursales>();
 
 		try {
 			co = Conexion.conectar();
@@ -113,6 +111,7 @@ public class SucursalDaoImpl implements ISucursalDao {
 		}
 		return eliminar;
 	}
+
 	@Override
 	public boolean innerJoin(Sucursales sucursales) {
 		boolean innerJoin = false;
@@ -122,8 +121,7 @@ public class SucursalDaoImpl implements ISucursalDao {
 
 		String sql = "SELECT  ( id_sucursal, razon_social, direccion_suc, telefono, id_administrador)";
 		System.out.println(sql);
-	
-		
+
 		try {
 			con = Conexion.conectar();
 			stm = con.createStatement();
@@ -137,18 +135,21 @@ public class SucursalDaoImpl implements ISucursalDao {
 		}
 		return innerJoin;
 	}
-	public List<String[]> obtenerProductosSucursal( int idSucursal ) {
+
+	public List<String[]> obtenerProductosSucursal(int id_sucursal) {
 
 		Connection co = null;
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "select sucursal.razon_social, producto.nombre_producto from producto_sucursal" +
-                " inner join producto on producto_sucursal.producto_idproducto = producto.id_producto" +
-                " inner join sucursal on producto_sucursal.sucursal_id_sucursal = sucursal.id_sucursal" +
-                "where sucursal.id_sucursal = " + String.valueOf(idSucursal) + ";";
+		String sql = "select sucursal.razon_social, producto.nombre_producto from producto_sucursal"
+				+ " inner join producto on producto_sucursal.producto_idproducto = producto.id_producto"
+				+ " inner join sucursal on producto_sucursal.sucursal_id_sucursal = sucursal.id_sucursal"
+				+ " where sucursal.id_sucursal = " + String.valueOf(id_sucursal) + ";";
 
-		List<String[]> listaSucursal= new ArrayList<String[]>();
+		System.out.println(sql);
+		
+		List<String[]> listaSucursal = new ArrayList<String[]>();
 
 		try {
 			co = Conexion.conectar();
@@ -156,22 +157,20 @@ public class SucursalDaoImpl implements ISucursalDao {
 			rs = stm.executeQuery(sql);
 			while (rs.next()) {
 
-                String[] productoSucursal = new String[2];
-                productoSucursal[0] = rs.getString(1); // nombre de la sucursal
-                productoSucursal[1] = rs.getString(2); // nombre del producto
+				String[] productoSucursal = new String[2];
+				productoSucursal[0] = rs.getString(1); // nombre de la sucursal
+				productoSucursal[1] = rs.getString(2); // nombre del producto
 				listaSucursal.add(productoSucursal);
 			}
 			stm.close();
 			rs.close();
 			co.close();
 		} catch (SQLException e) {
-			System.out.println("Error: Clase ClienteDaoImple, metodo obtener");
+			System.out.println("Error: Clase SucursalDaoImple, metodo obtener");
 			e.printStackTrace();
 		}
 
 		return listaSucursal;
 	}
-
-	
 
 }

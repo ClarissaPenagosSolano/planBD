@@ -4,6 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -31,7 +32,7 @@ public class ProductoResource {
 	}
 	
 	@POST
-	public String nuevo(){
+	public String nuevo(@javax.ws.rs.FormParam("id_producto") String id_producto, @javax.ws.rs.FormParam("nombre_producto") String nombre_producto, @javax.ws.rs.FormParam("precio_producto") String precio_producto, @javax.ws.rs.FormParam("marca") String marca, @javax.ws.rs.FormParam("presentacion") String presentacion){
 		IProductoDao dao = new ProductoDaoImpl();
 		List<Producto> croductosRegistrados = dao.obtener();
 		String json = new Gson().toJson( croductosRegistrados );
@@ -39,7 +40,7 @@ public class ProductoResource {
 	}
 
 	@PUT
-	public String editar(){
+	public String editar(@javax.ws.rs.FormParam("id_producto") String id_producto, @javax.ws.rs.FormParam("nombre_producto") String nombre_producto, @javax.ws.rs.FormParam("precio_producto") String precio_producto, @javax.ws.rs.FormParam("marca") String marca, @javax.ws.rs.FormParam("presentacion") String presentacion){
 		IProductoDao dao = new ProductoDaoImpl();
 		List<Producto> croductosRegistrados = dao.obtener();
 		String json = new Gson().toJson( croductosRegistrados );
@@ -47,7 +48,7 @@ public class ProductoResource {
 	}
 	
 	@DELETE
-	public String eliminar(){
+	public String eliminar(@PathParam ("id_producto") String id_producto){
 		IProductoDao dao = new ProductoDaoImpl();
 		List<Producto> croductosRegistrados = dao.obtener();
 		String json = new Gson().toJson( croductosRegistrados );

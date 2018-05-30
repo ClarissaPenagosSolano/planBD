@@ -26,5 +26,6 @@ public class CrudJavaDemoSucursal {
 		// eliminar un cliente por medio del id
 		sucursales.setId_sucursal(1);
 		controller.eliminar(sucursales);
+		
 	}
 }

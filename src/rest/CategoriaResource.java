@@ -3,6 +3,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -30,7 +31,7 @@ public class CategoriaResource {
 	}
 	
 	@POST
-	public String nuevo(){
+	public String nuevo(@javax.ws.rs.FormParam("id_categoria") String id_categoria, @javax.ws.rs.FormParam("nombre_categoria") String nombre_categoria){
 		ICategoriaDao dao = new CategoriaDaoImpl();
 		List<Categoria> categoriasCreadas= dao.obtener();
 		String json = new Gson().toJson( categoriasCreadas);
@@ -38,7 +39,7 @@ public class CategoriaResource {
 	}
 
 	@PUT
-	public String editar(){
+	public String editar(@javax.ws.rs.FormParam("id_categoria") String id_categoria, @javax.ws.rs.FormParam("nombre_categoria") String nombre_categoria){
 		ICategoriaDao dao = new CategoriaDaoImpl();
 		List<Categoria> categoriasCreadas= dao.obtener();
 		String json = new Gson().toJson( categoriasCreadas);
@@ -46,7 +47,7 @@ public class CategoriaResource {
 	}
 	
 	@DELETE
-	public String eliminar(){
+	public String eliminar(@PathParam ("id_categoria") String id_categoria){
 		ICategoriaDao dao = new CategoriaDaoImpl();
 		List<Categoria> categoriasCreadas= dao.obtener();
 		String json = new Gson().toJson( categoriasCreadas);

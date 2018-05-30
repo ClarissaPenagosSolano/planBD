@@ -1,6 +1,7 @@
 package com.ecodeup.controller.encargado;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import com.ecodeup.dao.encargado.EncargadoDaoImpl;

@@ -4,6 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -31,7 +32,7 @@ public class EncargadoResource {
 	}
 	
 	@POST
-	public String nuevo(){
+	public String nuevo(@javax.ws.rs.FormParam("id_encargado") String id_encargado, @javax.ws.rs.FormParam("nombres") String nombres, @javax.ws.rs.FormParam(" apellidos") String  apellidos, @javax.ws.rs.FormParam("tipo_doc") String tipo_doc, @javax.ws.rs.FormParam("num_doc") String num_doc, @javax.ws.rs.FormParam("celular") String celular){
 		IEncargadoDao dao = new EncargadoDaoImpl();
 		List<Encargado> EncargadosCreados= dao.obtener();
 		String json = new Gson().toJson( EncargadosCreados);
@@ -39,7 +40,7 @@ public class EncargadoResource {
 	}
 
 	@PUT
-	public String editar(){
+	public String editar(@javax.ws.rs.FormParam("id_encargado") String id_encargado, @javax.ws.rs.FormParam("nombres") String nombres, @javax.ws.rs.FormParam(" apellidos") String  apellidos, @javax.ws.rs.FormParam("tipo_doc") String tipo_doc, @javax.ws.rs.FormParam("num_doc") String num_doc, @javax.ws.rs.FormParam("celular") String celular){
 		IEncargadoDao dao = new EncargadoDaoImpl();
 		List<Encargado> EncargadosCreados= dao.obtener();
 		String json = new Gson().toJson( EncargadosCreados);
@@ -47,7 +48,7 @@ public class EncargadoResource {
 	}
 	
 	@DELETE
-	public String eliminar(){
+	public String eliminar(@PathParam ("id_encargado") String id_encargado){
 		IEncargadoDao dao = new EncargadoDaoImpl();
 		List<Encargado> EncargadosCreados= dao.obtener();
 		String json = new Gson().toJson( EncargadosCreados);

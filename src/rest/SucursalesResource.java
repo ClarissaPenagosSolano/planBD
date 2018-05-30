@@ -4,6 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -32,7 +33,7 @@ public class SucursalesResource {
 	}
 	
 	@POST
-	public String nuevo(){
+	public String nuevo(@javax.ws.rs.FormParam("id_sucursal") String id_sucursal, @javax.ws.rs.FormParam("razon_social") String razon_social, @javax.ws.rs.FormParam(" direccion_suc") String  direccion_suc, @javax.ws.rs.FormParam("telefono") String telefono, @javax.ws.rs.FormParam("id_administrador") String id_administrador){
 		ISucursalDao dao = new SucursalDaoImpl();
 		List<Sucursales> SucursalesCreados = dao.obtener();
 		String json = new Gson().toJson( SucursalesCreados );
@@ -40,7 +41,7 @@ public class SucursalesResource {
 	}
 
 	@PUT
-	public String editar(){
+	public String editar(@javax.ws.rs.FormParam("id_sucursal") String id_sucursal, @javax.ws.rs.FormParam("razon_social") String razon_social, @javax.ws.rs.FormParam(" direccion_suc") String  direccion_suc, @javax.ws.rs.FormParam("telefono") String telefono, @javax.ws.rs.FormParam("id_administrador") String id_administrador){
 		ISucursalDao dao = new SucursalDaoImpl();
 		List<Sucursales> SucursalesCreados = dao.obtener();
 		String json = new Gson().toJson( SucursalesCreados );
@@ -48,7 +49,7 @@ public class SucursalesResource {
 	}
 	
 	@DELETE
-	public String eliminar(){
+	public String eliminar(@PathParam("id_sucursal") String id_sucursal ){
 		ISucursalDao dao = new SucursalDaoImpl();
 		List<Sucursales> SucursalesCreados = dao.obtener();
 		String json = new Gson().toJson( SucursalesCreados );
